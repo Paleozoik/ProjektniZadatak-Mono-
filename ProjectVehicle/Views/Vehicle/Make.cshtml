@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MakeGetViewModel>
+@{
+    ViewData["Title"] = "Make";
+}
+<h1>Vehicle makers</h1>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var make in Model)
+            {
+                <tr>
+                    <td>@make.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<!--
+    
+Čuvam ovo kao primjer kako bi generalno trebalo izgledati
+<p>
+<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                @Html.DisplayNameFor(model => model.Name)
+        </tr>
+    </thead>
+    <tbody>
+        @if  (Model.Count() > 0)
+        {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+        }
+    </tbody>
+</table>
+-->

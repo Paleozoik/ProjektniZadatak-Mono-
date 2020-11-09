@@ -36,22 +36,23 @@ namespace ProjectVehicle.Data
 
         public async Task<VehicleMake> GetVehicleMakeByIdAsync(int id)
         {
-            return await _context.VehicleMake.FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.VehicleMake.Include(c => c.VehicleModels).FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IEnumerable<VehicleMake>> GetVehicleMakesAsync() //should be called to populate an instantiated var by await this method
+        public async Task<IEnumerable<VehicleMake>> GetVehicleMakesAsync()
         {
-            return await _context.VehicleMake.ToListAsync(); //reminder: Not sure if await is needed here, or if I should cast
-        }   //seems most efficient that way, but what do I know
+            return await _context.VehicleMake.ToListAsync();
+            //return await _context.VehicleMake.Include(c => c.VehicleModels).ToListAsync(); Naprednija ali ne koristim
+        }   
 
         public async Task<VehicleModel> GetVehicleModelByIdAsync(int id)
         {
-            return await _context.VehicleModel.FirstOrDefaultAsync(m => m.Id == id); //not sure about await
+            return await _context.VehicleModel.Include(c => c.VehicleMake).FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<IEnumerable<VehicleModel>> GetVehicleModelsAsync()
         {
-            return await _context.VehicleModel.ToListAsync(); 
+            return await _context.VehicleModel.Include(c => c.VehicleMake).ToListAsync(); 
         }
 
         public async Task UpdateVehicleMakeAsync(int id, VehicleMake make)

@@ -31,7 +31,7 @@ namespace ProjectVehicle
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IVehicleDataManipulations, MockVehicleDataManipulations>(); // reminder: study AddScoped / Singleton / Transient cases
+            services.AddScoped<IVehicleDataManipulations, VehicleService>(); // reminder: study AddScoped / Singleton / Transient cases
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
