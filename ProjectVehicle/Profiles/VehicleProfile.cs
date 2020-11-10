@@ -12,9 +12,14 @@ namespace ProjectVehicle.Profiles
         public VehicleProfile()
         {
             CreateMap<VehicleMake, MakeGetViewModel>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name)); //keeping it here for syntax refference
+                .ForMember(dest => dest.ModelName, opt => opt.MapFrom(src => src.VehicleModels.Select(c => c.Name)));
             CreateMap<VehicleModel, ModelGetViewModel>()
-                .ForMember(dest => dest.makeName, opt => opt.MapFrom(src => src.VehicleMake.Name));
+                .ForMember(dest => dest.MakeName, opt => opt.MapFrom(src => src.VehicleMake.Name));
+            CreateMap<ModelCreateViewModel, VehicleModel>();
+            CreateMap<MakeCreateViewModel, VehicleMake>();
+            CreateMap<ModelPutViewModel, VehicleModel>();
+            CreateMap<MakePutViewModel, VehicleMake>();
+            CreateMap<VehicleMake, MakePutViewModel>();
         }
     }
 }

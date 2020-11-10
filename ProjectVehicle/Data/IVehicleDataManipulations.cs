@@ -17,8 +17,8 @@ namespace ProjectVehicle.Data
         Task<IEnumerable<VehicleMake>> GetVehicleMakesAsync();
         Task<VehicleMake> GetVehicleMakeByIdAsync(int id);
         //Update
-        Task UpdateVehicleMakeAsync(int id, VehicleMake make);
-        Task UpdateVehicleModelAsync(int id, VehicleModel model);
+        Task UpdateVehicleMakeAsync(VehicleMake make);
+        Task UpdateVehicleModelAsync(VehicleModel model);
         //Delete
         Task DeleteVehicleMakeAsync(int id);
         Task DeleteVehicleModelAsync(int id);

@@ -1,0 +1,18 @@
+﻿@model MakeCreateViewModel
+@{
+    ViewData["Title"] = "CreateMake";
+}
+<h1>Create Make</h1>
+<form asp-controller="Vehicle" asp-action="CreateMake" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Create Make" />
+</form>
+@section Scripts{
+@{<partial name="_ValidationScriptsPartial" /> }
+} 
+

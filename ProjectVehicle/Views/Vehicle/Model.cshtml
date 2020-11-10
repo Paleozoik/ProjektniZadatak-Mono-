@@ -1,31 +1,32 @@
-﻿@model IEnumerable<ModelGetViewModel> 
+﻿@model IEnumerable<ModelGetViewModel>
 @{
     ViewData["Title"] = "Model";
 }
-
-<h1>Vehicle Models</h1>
-
+<h1>Vehicle Model Administration View</h1>
+<a asp-action="CreateModel">Create new model</a>
 @if (Model.Count() > 0)
 {
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Model names</th>
+            <th scope="col">Maker</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Make
-                </th>
+                <th>@item.Name</th>
+                <th>@item.MakeName</th>
+                <th><a asp-action="EditModel" asp-route-id="@item.Id">Edit</a> | <a asp-action="DeleteModel" asp-route-id="@item.Id">Delete</a></th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var make in Model)
-            {
-                <tr>
-                    <td>@make.Name</td>
-                    <td>@make.makeName</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+}
+else
+{
+    <p>There are currently no vehicle models stored</p>
 }

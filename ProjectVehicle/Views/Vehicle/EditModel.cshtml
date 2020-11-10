@@ -1,0 +1,40 @@
+﻿@model ModelPutViewModel
+@{
+    ViewData["Title"] = "EditModel";
+}
+
+<h1>Edit Model</h1>
+<form asp-controller="Vehicle" asp-action="EditModel" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="Id" hidden />
+    <table>
+        <thead>
+
+            <tr>
+                <td>Old name</td>
+                <td>New name</td>
+                <td>Maker</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Name</td>
+                <td>
+                    <input class="form-control" asp-for="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+                <td>
+                    <select asp-for="MakeId" asp-items="Model.VehicleMakes" required>
+                    </select>
+                    <span asp-validation-for="MakeId" class="text-danger"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Save Changes" />
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
