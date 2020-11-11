@@ -1,0 +1,4 @@
+1. Potrebno je projekt podijeliti na dva layera. Ti si napravio sve to unutar istog projekta, a potrebno je imati jedan MVC projekt u solutionu i jedan Service projekt. Napravi layere i reorganiziraj kod.
+3. Prouči SRP princip te podijeli kod u posebne klase. Neka svaka klasa ima jednu "zadaću".
+4. Pripazi na naming. Savjet je da interface-i imaju isti naziv kao i klase koje ga implementiraju (konkretno govorim o interface-u IVehicleDataManipulations i klasi VehicleService). Da se i on zove IVehicleService, odmah bih primjetila dependency u controlleru, ovako sam morala istraživati što to znači (a to automatski nije dobar naming).
+5. Nije dobro dohvaćati sve podatke iz baze tako da je potrebno ubaciti filtriranje, sortiranje i paging. To je potrebno napraviti pomoću objekata tako da ćete za navedene 3 stvari kreirati klase koje će imati određene propertije i metode (ako je to potrebno) kako bi se mogli podatci filtrirati i sortirati te vraćati page-ani podatci.
