@@ -1,5 +1,0 @@
-C:\ProjectFiles\ProjektniZadatak(Mono)\DataAccessLayer\bin\Debug\netcoreapp3.1\DataAccessLayer.deps.json
-C:\ProjectFiles\ProjektniZadatak(Mono)\DataAccessLayer\bin\Debug\netcoreapp3.1\DataAccessLayer.dll
-C:\ProjectFiles\ProjektniZadatak(Mono)\DataAccessLayer\obj\Debug\netcoreapp3.1\DataAccessLayer.csprojAssemblyReference.cache
-C:\ProjectFiles\ProjektniZadatak(Mono)\DataAccessLayer\obj\Debug\netcoreapp3.1\DataAccessLayer.AssemblyInfoInputs.cache
-C:\ProjectFiles\ProjektniZadatak(Mono)\DataAccessLayer\obj\Debug\netcoreapp3.1\DataAccessLayer.AssemblyInfo.cs

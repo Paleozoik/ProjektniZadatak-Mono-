@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectVehicle.Data;
+using Service.Concretes;
+using Service.Interfaces;
 
 namespace ProjectVehicle
 {
@@ -45,6 +47,9 @@ namespace ProjectVehicle
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<VehicleService>().As<IVehicleDataManipulations>();
+            builder.RegisterType<MakeDataManipulations>().As<IMakeDataManipulations>();
+            builder.RegisterType<ModelDataManipulations>().As<IModelDataManipulations>();
+            builder.RegisterType<VehicleWrapper>().As<IVehicleWrapper>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

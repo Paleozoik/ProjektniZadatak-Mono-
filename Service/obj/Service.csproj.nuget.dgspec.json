@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\DataAccessLayer\\DataAccessLayer.csproj": {}
+    "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\Service\\Service.csproj": {}
   },
   "projects": {
-    "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\DataAccessLayer\\DataAccessLayer.csproj",
-        "projectName": "DataAccessLayer",
-        "projectPath": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\Service\\Service.csproj",
+        "projectName": "Service",
+        "projectPath": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\Service\\Service.csproj",
         "packagesPath": "C:\\Users\\Stjepan Drenski\\.nuget\\packages\\",
-        "outputPath": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\DataAccessLayer\\obj\\",
+        "outputPath": "C:\\ProjectFiles\\ProjektniZadatak(Mono)\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Stjepan Drenski\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,13 +38,15 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Autofac": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[5.0.0, )"
             },
-            "Autofac.Extensions.DependencyInjection": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[7.1.0, )"
+              "version": "[5.0.0, )"
             }
           },
           "imports": [

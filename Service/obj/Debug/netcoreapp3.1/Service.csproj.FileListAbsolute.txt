@@ -1,0 +1,5 @@
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.deps.json
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.dll
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.csprojAssemblyReference.cache
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfoInputs.cache
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfo.cs
