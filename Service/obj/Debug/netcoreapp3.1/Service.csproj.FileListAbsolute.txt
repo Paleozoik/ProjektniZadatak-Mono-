@@ -3,10 +3,10 @@ C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.d
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.csprojAssemblyReference.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfoInputs.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfo.cs
-C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.csproj.CoreCompileInputs.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.runtimeconfig.json
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.runtimeconfig.dev.json
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\bin\Debug\netcoreapp3.1\Service.pdb
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.dll
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.pdb
 C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.genruntimeconfig.cache
+C:\ProjectFiles\ProjektniZadatak(Mono)\Service\obj\Debug\netcoreapp3.1\Service.csproj.CoreCompileInputs.cache

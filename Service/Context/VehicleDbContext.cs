@@ -8,7 +8,7 @@ namespace Service.Context
 {
     public class VehicleDbContext : DbContext
     {
-        public VehicleDbContext(DbContextOptions options) : base (options)
+        public VehicleDbContext(DbContextOptions<VehicleDbContext> options) : base (options)
         {
         }
         public DbSet<VehicleMake> Makes { get; set; }

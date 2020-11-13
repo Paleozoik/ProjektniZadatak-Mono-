@@ -47,7 +47,6 @@ namespace ProjectVehicle
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<ProjectVehicle.Data.VehicleService>().As<ProjectVehicle.Data.IVehicleDataManipulations>();
             builder.RegisterType<MakeDataManipulations>().As<IMakeDataManipulations>();
             builder.RegisterType<ModelDataManipulations>().As<IModelDataManipulations>();
             builder.RegisterType<VehicleWrapper>().As<IVehicleWrapper>();

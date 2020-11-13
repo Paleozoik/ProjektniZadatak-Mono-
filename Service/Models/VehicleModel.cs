@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Service.Models
 {
+    [Table("VehicleModel")]
     public class VehicleModel
     {
         [Key]
