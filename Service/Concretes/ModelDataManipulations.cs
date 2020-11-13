@@ -7,46 +7,50 @@ using Service.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Concretes
 {
-    public class ModelDataManipulations : DataManipulationsBase<VehicleModel>, IModelDataManipulations 
+    public class ModelDataManipulations : DataManipulationsBase<VehicleModel>, IModelDataManipulations
     {
         public ModelDataManipulations(VehicleDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public VehicleModel GetModelById(Guid Id)
+        public async Task<VehicleModel> GetModelByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            return await FindByCondition(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
         }
 
-        public PagedList<VehicleModel> GetModels(ModelPaging pagingParams)
+        public async Task<PagedList<VehicleModel>> GetModelsAsync(ModelPaging pagingParams)
         {
             var models = FindByCondition(x => x.MakeId == pagingParams.MakeFilter || pagingParams.MakeFilter == null).Include(x => x.Make);
-            IOrderedQueryable<VehicleModel> orderedModels;
-            switch (pagingParams.SortBy)
+            IOrderedQueryable<VehicleModel> orderedModels = pagingParams.SortBy switch
             {
-                case "MakeA":
-                    orderedModels = models.OrderBy(x => x.Make.Name);
-                    break;
-                case "MakeD":
-                    orderedModels = models.OrderByDescending(x => x.Make.Name);
-                    break;
-                case "ModelA":
-                    orderedModels = models.OrderBy(x => x.Name);
-                    break;
-                case "ModelD":
-                    orderedModels = models.OrderByDescending(x => x.Name);
-                    break;
-                default:
-                    orderedModels = models.OrderBy(x => x.Name);
-                    break;
-            }
-            return PagedList<VehicleModel>.ToPagedList(orderedModels, pagingParams.PageNumber, pagingParams.PageSize);
+                "MakeA" => models.OrderBy(x => x.Make.Name),
+                "MakeD" => models.OrderByDescending(x => x.Make.Name),
+                "ModelA" => models.OrderBy(x => x.Name),
+                "ModelD" => models.OrderByDescending(x => x.Name),
+                _ => models.OrderBy(x => x.Name),
+            };
+            return await PagedList<VehicleModel>.ToPagedListAsync(orderedModels, pagingParams.PageNumber, pagingParams.PageSize);
+        }
+        public async Task CreateModelAsync(VehicleModel model)
+        {
+            await CreateAsync(model);
+            await SaveChangesAsync();
+        }
+        public async Task UpdateModelAsync(VehicleModel model)
+        {
+            Update(model);
+            await SaveChangesAsync();
+        }
+        public async Task DeleteModelAsync(VehicleModel model)
+        {
+            Delete(model);
+            await SaveChangesAsync();
         }
     }
 }

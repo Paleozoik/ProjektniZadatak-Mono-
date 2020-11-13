@@ -7,10 +7,11 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Abstracts
 {
-    public abstract class DataManipulationsBase<T> : IDataManipulationsBase<T> where T : class
+    public abstract class DataManipulationsBase<T> : IDataManipulationsBase<T>, IDataManipulationsAsync<T> where T : class
     {
         private readonly VehicleDbContext dbContext;
         public DataManipulationsBase(VehicleDbContext DbContext)
@@ -19,23 +20,25 @@ namespace Service.Abstracts
         }
         public void Create(T entity)
         {
-            this.dbContext.Set<T>().Add(entity);
+            dbContext.Set<T>().Add(entity);
         }
         public void Update(T entity)
         {
-            this.dbContext.Set<T>().Update(entity);
+            dbContext.Set<T>().Update(entity);
         }
         public void Delete(T entity)
         {
-            this.dbContext.Set<T>().Remove(entity);
+            dbContext.Set<T>().Remove(entity);
         }
         public IQueryable<T> FindAll()
         {
-            return this.dbContext.Set<T>().AsNoTracking();
+            return dbContext.Set<T>().AsNoTracking();
         }
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
-            return this.dbContext.Set<T>().Where(expression).AsNoTracking();
+            return dbContext.Set<T>().Where(expression).AsNoTracking();
         }
+        public async Task CreateAsync(T entity) => await dbContext.AddAsync(entity);
+        public async Task SaveChangesAsync() => await dbContext.SaveChangesAsync();
     }
 }

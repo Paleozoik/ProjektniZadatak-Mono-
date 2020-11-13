@@ -4,12 +4,16 @@ using Service.Paging;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
     public interface IMakeDataManipulations : IDataManipulationsBase<VehicleMake>
     {
-        PagedList<VehicleMake> GetMakes(MakePaging pagingParams);
-        VehicleMake GetMakeById(Guid Id);
+        Task<PagedList<VehicleMake>> GetMakesAsync(MakePaging pagingParams);
+        Task<VehicleMake> GetMakeByIdAsync(Guid Id);
+        Task CreateMakeAsync(VehicleMake make);
+        Task UpdateMakeAsync(VehicleMake make);
+        Task DeleteMakeAsync(VehicleMake make);
     }
 }

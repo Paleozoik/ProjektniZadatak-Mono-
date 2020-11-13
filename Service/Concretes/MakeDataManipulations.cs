@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Concretes
 {
@@ -18,28 +19,36 @@ namespace Service.Concretes
         {
         }
 
-        public VehicleMake GetMakeById(Guid Id)
+        public async Task<VehicleMake> GetMakeByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            return await FindByCondition(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
         }
 
-        public PagedList<VehicleMake> GetMakes(MakePaging pagingParams)
+        public async Task<PagedList<VehicleMake>> GetMakesAsync(MakePaging pagingParams)
         {
             var makes = FindAll().Include(x => x.Models);
-            IOrderedQueryable<VehicleMake> orderedMakes;
-            switch (pagingParams.SortBy)
+            IOrderedQueryable<VehicleMake> orderedMakes = pagingParams.SortBy switch
             {
-                case "MakeA":
-                    orderedMakes = makes.OrderBy(x => x.Name);
-                    break;
-                case "MakeD":
-                    orderedMakes = makes.OrderByDescending(x => x.Name);
-                    break;
-                default:
-                    orderedMakes = makes.OrderBy(x => x.Name);
-                    break;
-            }
-            return PagedList<VehicleMake>.ToPagedList(orderedMakes, pagingParams.PageNumber, pagingParams.PageSize);
+                "MakeA" => makes.OrderBy(x => x.Name),
+                "MakeD" => makes.OrderByDescending(x => x.Name),
+                _ => makes.OrderBy(x => x.Name),
+            };
+            return await PagedList<VehicleMake>.ToPagedListAsync(orderedMakes, pagingParams.PageNumber, pagingParams.PageSize);
+        }
+        public async Task CreateMakeAsync(VehicleMake Make)
+        {
+            await CreateAsync(Make);
+            await SaveChangesAsync();
+        }
+        public async Task UpdateMakeAsync(VehicleMake Make)
+        {
+            Update(Make);
+            await SaveChangesAsync();
+        }
+        public async Task DeleteMakeAsync(VehicleMake Make)
+        {
+            Delete(Make);
+            await SaveChangesAsync();
         }
     }
 }

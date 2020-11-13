@@ -75,10 +75,12 @@ namespace ProjectVehicle.Controllers
                 return NotFound();
             }
             IEnumerable<VehicleMake> exsistingMakes = await _dataManipulations.GetVehicleMakesAsync();
-            ModelPutViewModel oldData = new ModelPutViewModel(exsistingMakes);
-            oldData.Id = model.Id; // nisam siguran kako bih korsitio AutoMapper u ovom slučaju
-            oldData.MakeId = model.MakeId;
-            oldData.Name = model.Name;
+            ModelPutViewModel oldData = new ModelPutViewModel(exsistingMakes)
+            {
+                Id = model.Id, // nisam siguran kako bih korsitio AutoMapper u ovom slučaju
+                MakeId = model.MakeId,
+                Name = model.Name
+            };
             return View(oldData);
         }
         [HttpPost]
