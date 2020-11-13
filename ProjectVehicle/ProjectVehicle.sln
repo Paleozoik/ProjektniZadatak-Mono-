@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectVehicle", "ProjectVehicle.csproj", "{ED4FF070-61B2-40C2-8246-6D0F82FA8AE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{D5A9B9B6-095B-45BD-BDFB-CE31EA79756B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "..\Service\Service.csproj", "{6640258D-E821-4CC7-B338-4179BAB2FE7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "..\Service\Service.csproj", "{6640258D-E821-4CC7-B338-4179BAB2FE7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{ED4FF070-61B2-40C2-8246-6D0F82FA8AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED4FF070-61B2-40C2-8246-6D0F82FA8AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4FF070-61B2-40C2-8246-6D0F82FA8AE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5A9B9B6-095B-45BD-BDFB-CE31EA79756B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5A9B9B6-095B-45BD-BDFB-CE31EA79756B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5A9B9B6-095B-45BD-BDFB-CE31EA79756B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5A9B9B6-095B-45BD-BDFB-CE31EA79756B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6640258D-E821-4CC7-B338-4179BAB2FE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6640258D-E821-4CC7-B338-4179BAB2FE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6640258D-E821-4CC7-B338-4179BAB2FE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU

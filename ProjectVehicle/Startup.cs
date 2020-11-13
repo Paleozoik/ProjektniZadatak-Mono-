@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProjectVehicle.Data;
+using Service.Context;
 using Service.Concretes;
 using Service.Interfaces;
 
@@ -27,6 +27,7 @@ namespace ProjectVehicle
             .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
             .AddEnvironmentVariables();
         this.Configuration = builder.Build();
+
         }
 
         public IConfiguration Configuration { get; }
@@ -46,7 +47,7 @@ namespace ProjectVehicle
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<VehicleService>().As<IVehicleDataManipulations>();
+            builder.RegisterType<ProjectVehicle.Data.VehicleService>().As<ProjectVehicle.Data.IVehicleDataManipulations>();
             builder.RegisterType<MakeDataManipulations>().As<IMakeDataManipulations>();
             builder.RegisterType<ModelDataManipulations>().As<IModelDataManipulations>();
             builder.RegisterType<VehicleWrapper>().As<IVehicleWrapper>();
