@@ -11,7 +11,7 @@ namespace Service.Interfaces
     public interface IModelDataManipulations : IDataManipulationsBase<VehicleModel>
     {
         Task<PagedList<VehicleModel>> GetModelsAsync(ModelPaging pagingParams);
-        Task<VehicleModel> GetModelByIdAsync(Guid Id);
+        Task<VehicleModel> GetModelByIdAsync(int Id);
         Task CreateModelAsync(VehicleModel model);
         Task UpdateModelAsync(VehicleModel model);
         Task DeleteModelAsync(VehicleModel model);

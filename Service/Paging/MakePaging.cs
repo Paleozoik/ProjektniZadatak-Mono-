@@ -6,6 +6,6 @@ namespace Service.Paging
 {
     public class MakePaging : PagingParameters
     {
-        public string SortBy { get; set; } = "MakeA";
+        public string SortBy { get; set; }
     }
 }

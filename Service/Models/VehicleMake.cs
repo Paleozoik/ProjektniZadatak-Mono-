@@ -10,7 +10,7 @@ namespace Service.Models
     public class VehicleMake
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")]
         [StringLength(30, ErrorMessage = "Name can't be longer than 30 characters")]
         public string Name { get; set; }
@@ -18,6 +18,6 @@ namespace Service.Models
         public string Abrv { get; set; }
 
 
-        public ICollection<VehicleModel> Models { get; set; }
+        public IEnumerable<VehicleModel> Models { get; set; }
     }
 }

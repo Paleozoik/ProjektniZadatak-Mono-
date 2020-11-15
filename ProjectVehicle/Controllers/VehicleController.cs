@@ -1,130 +1,127 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using ProjectVehicle.Data;
 using ProjectVehicle.Models;
+using Service.DTOs;
+using Service.Interfaces;
+using Service.Models;
+using Service.Paging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace ProjectVehicle.Controllers
 {
     public class VehicleController : Controller
     {
-        private readonly IVehicleDataManipulations _dataManipulations;
+        private readonly IVehicleWrapper _wrapper;
         private readonly IMapper _mapper;
 
         // do we need ILogger?
-        public VehicleController(IVehicleDataManipulations dataManipulations, IMapper mapper)
+        public VehicleController(IVehicleWrapper wrapper, IMapper mapper)
         {
-            _dataManipulations = dataManipulations;
+            _wrapper = wrapper;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Make()
+        public async Task<IActionResult> Make(MakePaging pagingParams)
         {
-            var readMake = await _dataManipulations.GetVehicleMakesAsync();
-            return View(_mapper.Map<IEnumerable<MakeGetViewModel>>(readMake));
-        }
+            ViewData["sortBy"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "MakeD" : "";
+            var PagedMake = await _wrapper.Make.GetMakesAsync(pagingParams);
+            var PagedDTO = _mapper.Map<PagedList<MakeDTO>>(PagedMake);
 
-        public async Task<IActionResult> Model()
-        {
-            var readModel = await _dataManipulations.GetVehicleModelsAsync();
-            return View(_mapper.Map<IEnumerable<ModelGetViewModel>>(readModel));
-        }
+            PagedDTO.CurrentPage = PagedMake.CurrentPage; //Nisam siguran kako bih to napravio sa AutoMapper-om
+            PagedDTO.PageSize = PagedMake.PageSize;
+            PagedDTO.TotalCount = PagedMake.TotalCount;
+            PagedDTO.TotalPages = PagedMake.TotalPages;
 
-        public async Task<IActionResult> CreateModel()
-        {
-            var exsistingMakes = await _dataManipulations.GetVehicleMakesAsync();
-            return View(new ModelCreateViewModel(exsistingMakes));
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateModel(ModelCreateViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                await _dataManipulations.CreateVehicleModelAsync(_mapper.Map<VehicleModel>(model));
-                return RedirectToAction("Model");
-            }
-            return View(model);
-        }
-
-        public IActionResult CreateMake()
-        {
+            ViewBag.Data = PagedDTO;
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateMake(MakeCreateViewModel make)
+        public async Task<IActionResult> Model(ModelPaging pagingParams)
         {
-            if (ModelState.IsValid)
-            {
-                await _dataManipulations.CreateVehicleMakeAsync(_mapper.Map<VehicleMake>(make));
-                return RedirectToAction("Make");
-            }
+            ViewData["sortByModel"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "ModelD" : "";
+            ViewData["sortByMake"] = pagingParams.SortBy == "MakeA" ? "MakeD" : "MakeA";
+            
+            var PagedModel = await _wrapper.Model.GetModelsAsync(pagingParams);
+            var PagedDTO = _mapper.Map<PagedList<ModelDTO>>(PagedModel);
+            
+            PagedDTO.PageSize = PagedModel.PageSize;
+            PagedDTO.TotalCount = PagedModel.TotalCount;
+            PagedDTO.TotalPages = PagedModel.TotalPages;
+
+            ViewBag.Data = PagedDTO;
             return View();
         }
-        public async Task<IActionResult> EditModel(int id)
-        {
-            VehicleModel model = await _dataManipulations.GetVehicleModelByIdAsync(id);
-            if (model == null)
-            {
-                return NotFound();
-            }
-            IEnumerable<VehicleMake> exsistingMakes = await _dataManipulations.GetVehicleMakesAsync();
-            ModelPutViewModel oldData = new ModelPutViewModel(exsistingMakes)
-            {
-                Id = model.Id, // nisam siguran kako bih korsitio AutoMapper u ovom slučaju
-                MakeId = model.MakeId,
-                Name = model.Name
-            };
-            return View(oldData);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditModel(ModelPutViewModel newData)
-        {
-            if (ModelState.IsValid) {
-            var data = _mapper.Map<VehicleModel>(newData);
-            await _dataManipulations.UpdateVehicleModelAsync(data);
-            return RedirectToAction("Model");
-            }
-            return View(newData);
-        }
-        public async Task<IActionResult> EditMake(int id)
-        {
-            VehicleMake data = await _dataManipulations.GetVehicleMakeByIdAsync(id);
-            if (data == null)
-            {
-                return BadRequest();
-            }
-            return View(_mapper.Map<MakePutViewModel>(data));
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditMake(MakePutViewModel newData)
-        {
-            if (ModelState.IsValid)
-            {
-                var data = _mapper.Map<VehicleMake>(newData);
-                await _dataManipulations.UpdateVehicleMakeAsync(data);
-                return RedirectToAction("Make");
-            }
-            return View(newData);
-        }
-        public async Task<IActionResult> DeleteModel(int id)
-        {
-            await _dataManipulations.DeleteVehicleModelAsync(id);
-            return RedirectToAction("Model");
-        }
-        public async Task<IActionResult> DeleteMake(int id)
-        {
-            await _dataManipulations.DeleteVehicleMakeAsync(id);
-            return RedirectToAction("Make");
-        }
+        /*
+public async Task<IActionResult> CreateModel()
+{
 
+    return View();
+}
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> CreateModel(VehicleModel model)
+{
+    if (ModelState.IsValid)
+    {
+
+        return RedirectToAction();
+    }
+    return View();
+}
+
+public IActionResult CreateMake()
+{
+    return View();
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> CreateMake(VehicleMake make)
+{
+    if (ModelState.IsValid)
+    {
+        return RedirectToAction("Make");
+    }
+    return View();
+}
+public async Task<IActionResult> EditModel(int id)
+{
+
+    return View();
+}
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> EditModel()
+{
+
+    return View();
+}
+public async Task<IActionResult> EditMake(int id)
+{
+
+    return View();
+}
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> EditMake()
+{
+
+    return View();
+}
+public async Task<IActionResult> DeleteModel()
+{
+    return RedirectToAction("Model");
+}
+public async Task<IActionResult> DeleteMake()
+{
+    return RedirectToAction("Make");
+}
+*/
     }
 }

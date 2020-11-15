@@ -10,9 +10,9 @@ namespace Service.Models
     public class VehicleModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [ForeignKey(nameof(VehicleMake))]
-        public Guid MakeId { get; set; }
+        public int MakeId { get; set; }
         [Required(ErrorMessage = "Name is required")]
         [StringLength(30, ErrorMessage = "Name can't be longer than 30 characters")]
         public string Name { get; set; }

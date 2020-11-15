@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
-using ProjectVehicle.Models;
-using System;
+using Service.Models;
+using Service.DTOs;
+using Service.Paging;
+using AutoMapper.Internal;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ProjectVehicle.Profiles
 {
@@ -11,15 +13,10 @@ namespace ProjectVehicle.Profiles
     {
         public VehicleProfile()
         {
-            CreateMap<VehicleMake, MakeGetViewModel>()
-                .ForMember(dest => dest.ModelName, opt => opt.MapFrom(src => src.VehicleModels.Select(c => c.Name)));
-            CreateMap<VehicleModel, ModelGetViewModel>()
-                .ForMember(dest => dest.MakeName, opt => opt.MapFrom(src => src.VehicleMake.Name));
-            CreateMap<ModelCreateViewModel, VehicleModel>();
-            CreateMap<MakeCreateViewModel, VehicleMake>();
-            CreateMap<ModelPutViewModel, VehicleModel>();
-            CreateMap<MakePutViewModel, VehicleMake>();
-            CreateMap<VehicleMake, MakePutViewModel>();
+            CreateMap<VehicleMake, MakeDTO>()
+                .ForMember(dest => dest.ModelNames, opt => opt.MapFrom(src => src.Models.Select(x => x.Name)));
+            CreateMap<VehicleModel, ModelDTO>()
+                .ForMember(dest => dest.MakeName, opt => opt.MapFrom(src => src.Make.Name));
         }
     }
 }

@@ -5,6 +5,17 @@
     <UserSecretsId>ef346314-9911-44a8-afd1-c6261e7e0c7b</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Vehicle\CreateMake.cshtml" />
+    <Content Remove="Views\Vehicle\CreateModel.cshtml" />
+    <Content Remove="Views\Vehicle\EditMake.cshtml" />
+    <Content Remove="Views\Vehicle\EditModel.cshtml" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />

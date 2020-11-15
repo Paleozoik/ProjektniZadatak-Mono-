@@ -19,7 +19,7 @@ namespace Service.Concretes
 
         }
 
-        public async Task<VehicleModel> GetModelByIdAsync(Guid Id)
+        public async Task<VehicleModel> GetModelByIdAsync(int Id)
         {
             return await FindByCondition(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
         }

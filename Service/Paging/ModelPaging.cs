@@ -7,7 +7,7 @@ namespace Service.Paging
 {
     public class ModelPaging : PagingParameters
     {
-        public Guid MakeFilter { get; set; }
-        public string SortBy { get; set; } = "ModelA";
+        public int? MakeFilter { get; set; }
+        public string SortBy { get; set; } = "";
     }
 }

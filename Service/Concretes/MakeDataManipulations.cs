@@ -19,7 +19,7 @@ namespace Service.Concretes
         {
         }
 
-        public async Task<VehicleMake> GetMakeByIdAsync(Guid Id)
+        public async Task<VehicleMake> GetMakeByIdAsync(int Id)
         {
             return await FindByCondition(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
         }
@@ -29,7 +29,6 @@ namespace Service.Concretes
             var makes = FindAll().Include(x => x.Models);
             IOrderedQueryable<VehicleMake> orderedMakes = pagingParams.SortBy switch
             {
-                "MakeA" => makes.OrderBy(x => x.Name),
                 "MakeD" => makes.OrderByDescending(x => x.Name),
                 _ => makes.OrderBy(x => x.Name),
             };
