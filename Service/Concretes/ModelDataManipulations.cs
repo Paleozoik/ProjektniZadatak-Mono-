@@ -39,11 +39,13 @@ namespace Service.Concretes
         }
         public async Task CreateModelAsync(VehicleModel model)
         {
+            model.Abrv = GenerateAbrv(model.Name);
             await CreateAsync(model);
             await SaveChangesAsync();
         }
         public async Task UpdateModelAsync(VehicleModel model)
         {
+            model.Abrv = GenerateAbrv(model.Name);
             Update(model);
             await SaveChangesAsync();
         }
@@ -51,6 +53,10 @@ namespace Service.Concretes
         {
             Delete(model);
             await SaveChangesAsync();
+        }
+        private string GenerateAbrv(string Name)
+        {
+            return Name.Replace(" ", "").ToLower();
         }
     }
 }

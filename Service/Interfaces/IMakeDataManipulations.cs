@@ -15,5 +15,6 @@ namespace Service.Interfaces
         Task CreateMakeAsync(VehicleMake make);
         Task UpdateMakeAsync(VehicleMake make);
         Task DeleteMakeAsync(VehicleMake make);
+        Task<IEnumerable<VehicleMake>> GetAllMakesAsync();
     }
 }

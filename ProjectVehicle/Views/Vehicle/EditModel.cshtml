@@ -1,4 +1,4 @@
-﻿@model ModelPutViewModel
+﻿@model Service.DTOs.EditModelDTO
 @{
     ViewData["Title"] = "EditModel";
 }
@@ -9,7 +9,6 @@
     <input asp-for="Id" hidden />
     <table>
         <thead>
-
             <tr>
                 <td>Old name</td>
                 <td>New name</td>
@@ -24,7 +23,7 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </td>
                 <td>
-                    <select asp-for="MakeId" asp-items="Model.VehicleMakes" required>
+                    <select asp-for="MakeId" asp-items="ViewBag.SelectList" required>
                     </select>
                     <span asp-validation-for="MakeId" class="text-danger"></span>
                 </td>

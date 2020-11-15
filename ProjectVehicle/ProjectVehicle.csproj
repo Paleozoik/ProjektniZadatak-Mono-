@@ -10,13 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Vehicle\CreateMake.cshtml" />
-    <Content Remove="Views\Vehicle\CreateModel.cshtml" />
-    <Content Remove="Views\Vehicle\EditMake.cshtml" />
-    <Content Remove="Views\Vehicle\EditModel.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />

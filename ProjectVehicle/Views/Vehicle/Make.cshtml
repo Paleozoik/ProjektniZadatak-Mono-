@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Service.Paging.MakePaging
+@{
     ViewData["Title"] = "Make";
 }
 <h1>Vehicle Make Administration View</h1>
@@ -33,4 +34,16 @@
 {
     <p>There are currently no vehicle makers stored</p>
 }
-
+@{ 
+    var previousDisabled = ViewBag.Data.HasPrevious ? "" : "disabled";
+    var nextDisabled = ViewBag.Data.HasNext ? "" : "disabled";
+}
+<a asp-action="Make"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber-1)
+   class="btn font-weight-bold @previousDisabled"><</a>
+@Model.PageNumber
+<a asp-action="Make"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber+1)
+   class="btn font-weight-bold @nextDisabled">></a>

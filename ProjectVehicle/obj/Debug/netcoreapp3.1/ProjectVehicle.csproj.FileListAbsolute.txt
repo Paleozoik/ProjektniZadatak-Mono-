@@ -85,3 +85,7 @@ C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\Se
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.csproj.CoreCompileInputs.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.MvcApplicationPartsAssemblyInfo.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\Model.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\CreateMake.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\CreateModel.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditMake.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditModel.cshtml.g.cs

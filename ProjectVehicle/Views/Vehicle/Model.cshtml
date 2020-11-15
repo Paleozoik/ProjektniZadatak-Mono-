@@ -1,31 +1,48 @@
-﻿@{
+﻿@model Service.Paging.ModelPaging;
+@{
     ViewData["Title"] = "Model";
 }
 <h1>Vehicle Model Administration View</h1>
 <a asp-action="CreateModel">Create new model</a>
 @if (ViewBag.Data.Count > 0)
 {
-<table class="table">
-    <thead>
-        <tr>
-            <th><a asp-action="Model" asp-route-SortBy="@ViewData["sortByModel"]">Name</a></th>
-            <th><a asp-action="Model" asp-route-SortBy="@ViewData["sortByMake"]">Maker</a></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.Data)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <th>@item.Name</th>
-                <th>@item.MakeName</th>
-                <th><a asp-action="EditModel" asp-route-id="@item.Id">Edit</a> | <a asp-action="DeleteModel" asp-route-id="@item.Id">Delete</a></th>
+                <th><a asp-action="Model" asp-route-SortBy="@ViewData["sortByModel"]" asp-route-MakeFilter=@Model.MakeFilter>Name</a></th>
+                <th><a asp-action="Model" asp-route-SortBy="@ViewData["sortByMake"]" asp-route-MakeFilter=@Model.MakeFilter>Maker</a></th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Data)
+            {
+                <tr>
+                    <th>@item.Name</th>
+                    <th><a asp-action="Model" asp-route-SortBy=@Model.SortBy asp-route-MakeFilter="@item.MakeId">@item.MakeName</a></th>
+                    <th><a asp-action="EditModel" asp-route-id="@item.Id">Edit</a> | 
+                    <a asp-action="DeleteModel" asp-route-id="@item.Id">Delete</a></th>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {
     <p>There are currently no vehicle models stored</p>
 }
+@{
+    var previousDisabled = ViewBag.Data.HasPrevious ? "" : "disabled";
+    var nextDisabled = ViewBag.Data.HasNext ? "" : "disabled";
+}
+<a asp-action="Model"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber-1)
+   asp-route-MakeFilter=@Model.MakeFilter
+   class="btn @previousDisabled"><</a>
+@Model.PageNumber
+<a asp-action="Model"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber+1)
+   asp-route-MakeFilter=@Model.MakeFilter
+   class="btn @nextDisabled">></a>

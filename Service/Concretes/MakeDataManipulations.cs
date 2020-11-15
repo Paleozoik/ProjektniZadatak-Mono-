@@ -36,6 +36,7 @@ namespace Service.Concretes
         }
         public async Task CreateMakeAsync(VehicleMake Make)
         {
+            Make.Abrv = GenerateAbrv(Make.Name);
             await CreateAsync(Make);
             await SaveChangesAsync();
         }
@@ -49,5 +50,14 @@ namespace Service.Concretes
             Delete(Make);
             await SaveChangesAsync();
         }
+        public async Task<IEnumerable<VehicleMake>> GetAllMakesAsync()
+        {
+            return await FindAll().ToListAsync();
+        }
+        private string GenerateAbrv (string Name)
+        {
+            return Name.Replace(" ", "").ToLower();
+        }
+
     }
 }
