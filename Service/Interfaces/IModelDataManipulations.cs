@@ -1,9 +1,5 @@
-﻿using Service.Abstracts;
-using Service.Models;
+﻿using Service.Models;
 using Service.Paging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Interfaces

@@ -1,21 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Service.Abstracts;
 using Service.Context;
 using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Concretes
 {
     public class MakeDataManipulations : DataManipulationsBase<VehicleMake>, IMakeDataManipulations
     {
-        public MakeDataManipulations(VehicleDbContext dbContext) : base (dbContext)
+        public MakeDataManipulations(VehicleDbContext dbContext) : base(dbContext)
         {
         }
 
@@ -29,6 +26,7 @@ namespace Service.Concretes
             var makes = FindAll().Include(x => x.Models);
             IOrderedQueryable<VehicleMake> orderedMakes = pagingParams.SortBy switch
             {
+                "MakeA" => makes.OrderBy(x => x.Name), //redundantno
                 "MakeD" => makes.OrderByDescending(x => x.Name),
                 _ => makes.OrderBy(x => x.Name),
             };
@@ -54,7 +52,7 @@ namespace Service.Concretes
         {
             return await FindAll().ToListAsync();
         }
-        private string GenerateAbrv (string Name)
+        private string GenerateAbrv(string Name)
         {
             return Name.Replace(" ", "").ToLower();
         }

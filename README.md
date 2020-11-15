@@ -7,7 +7,7 @@ Zadatak je podjeljen na podzadatke (plus ako su riješeni)
 + IoC odrađen pomoću Autofac-a
 + Stvoren VehicleController sa CRUD operacijama i view-ovima
 + Dodan paging, sorting, filtering
-+ Metode za manipulaciju s podatcima su kroz wrapper korištene u controlleru
++ Metode za manipulaciju s podatcima su kroz wrapper korištene u controller-u
 
 
 Jedine promjene koje su potrebne za pokretanje projekta su:

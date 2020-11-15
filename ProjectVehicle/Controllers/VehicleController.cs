@@ -6,11 +6,7 @@ using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace ProjectVehicle.Controllers
@@ -124,7 +120,7 @@ namespace ProjectVehicle.Controllers
         public async Task<IActionResult> EditMake(int id)
         {
             var make = await _wrapper.Make.GetMakeByIdAsync(id);
-            if (make==null)
+            if (make == null)
             {
                 return BadRequest("Invalid ID");
             }

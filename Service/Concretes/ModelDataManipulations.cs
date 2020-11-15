@@ -4,10 +4,7 @@ using Service.Context;
 using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Concretes
@@ -29,7 +26,7 @@ namespace Service.Concretes
             var models = FindByCondition(x => x.MakeId == pagingParams.MakeFilter || pagingParams.MakeFilter == null).Include(x => x.Make);
             IOrderedQueryable<VehicleModel> orderedModels = pagingParams.SortBy switch
             {
-                "MakeA" => models.OrderBy(x => x.Make.Name),
+                "MakeA" => models.OrderBy(x => x.Make.Name), //redundantno
                 "MakeD" => models.OrderByDescending(x => x.Make.Name),
                 "ModelA" => models.OrderBy(x => x.Name),
                 "ModelD" => models.OrderByDescending(x => x.Name),
