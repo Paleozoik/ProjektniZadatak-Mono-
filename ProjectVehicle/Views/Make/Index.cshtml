@@ -1,0 +1,50 @@
+﻿@model Service.Paging.MakePaging
+@{
+    ViewData["Title"] = "Make";
+}
+<h1>Vehicle Make Administration View</h1>
+<a asp-action="Create">Create new maker</a>
+@if (ViewBag.Data.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a asp-action="Index" asp-route-SortBy="@ViewData["sortBy"]">Name</a> </th>
+                <th>Models</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Data)
+            {
+                <tr>
+                    <th>@item.Name</th>
+                    <th>
+                        @foreach (var modelName in item.ModelNames)
+                        {
+                            @modelName<br />
+                        }
+                    </th>
+                    <th><a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are currently no vehicle makers stored</p>
+}
+@{
+    var previousDisabled = ViewBag.Data.HasPrevious ? "" : "disabled";
+    var nextDisabled = ViewBag.Data.HasNext ? "" : "disabled";
+}
+<a asp-action="Index"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber-1)
+   class="btn font-weight-bold @previousDisabled"><</a>
+@Model.PageNumber
+<a asp-action="Index"
+   asp-route-SortBy=@Model.SortBy
+   asp-route-PageNumber=@(Model.PageNumber+1)
+   class="btn font-weight-bold @nextDisabled">></a>

@@ -1,6 +1,5 @@
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\appsettings.json
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\ProjectVehicle.exe
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.csprojAssemblyReference.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.AssemblyInfoInputs.cache
@@ -89,3 +88,10 @@ C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Ra
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\CreateModel.cshtml.g.cs
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditMake.cshtml.g.cs
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditModel.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\scopedcss\bundle\ProjectVehicle.styles.css
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Make\Create.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Make\Edit.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Make\Index.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Model\Create.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Model\Edit.cshtml.g.cs
+C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Model\Index.cshtml.g.cs
