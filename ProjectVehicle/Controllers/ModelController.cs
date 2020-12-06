@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectVehicle.DTOs;
+using Service.Common.Paging;
 using Service.Interfaces;
 using Service.Models;
-using Service.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +23,17 @@ namespace ProjectVehicle.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(ModelPaging pagingParams)
+        public async Task<IActionResult> Index(PagingParameters pagingParams, string? SortBy, int? MakeFilter)
         {
-            ViewData["sortByModel"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "ModelD" : "";
-            ViewData["sortByMake"] = pagingParams.SortBy == "MakeA" ? "MakeD" : "MakeA";
+            ViewData["sortByModel"] = String.IsNullOrEmpty(SortBy) ? "ModelD" : "";
+            ViewData["sortByMake"] = SortBy == "MakeA" ? "MakeD" : "MakeA";
 
-            var PagedModel = await _wrapper.ModelService.GetModelsAsync(pagingParams);
-            var PagedDTO = _mapper.Map<PagedList<ModelDTO>>(PagedModel);
+            ViewData["makeFilter"] = MakeFilter;
+            ViewData["sortBy"] = SortBy;
 
-            PagedDTO.CurrentPage = PagedModel.CurrentPage;
-            PagedDTO.PageSize = PagedModel.PageSize;
-            PagedDTO.TotalCount = PagedModel.TotalCount;
-            PagedDTO.TotalPages = PagedModel.TotalPages;
+            var PagedModel = await _wrapper.ModelService.GetModelsAsync(pagingParams, SortBy, MakeFilter);
+            PagedList<ModelDTO> PagedDTO = new PagedList<ModelDTO>(_mapper.Map<List<ModelDTO>>(PagedModel), PagedModel.TotalCount, PagedModel.CurrentPage, PagedModel.PageSize);
+
 
             ViewBag.Data = PagedDTO;
             return View(pagingParams);

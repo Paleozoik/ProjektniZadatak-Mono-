@@ -1,6 +1,6 @@
-﻿namespace Service.Paging
+﻿namespace Service.Common.Paging
 {
-    public abstract class PagingParameters
+    public class PagingParameters
     {
         public const int maxPageSize = 10;
         public int PageNumber { get; set; } = 1;

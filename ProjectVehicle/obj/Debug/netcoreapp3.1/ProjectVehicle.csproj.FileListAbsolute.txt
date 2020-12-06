@@ -63,7 +63,6 @@ C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Pr
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.genruntimeconfig.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\Make.cshtml.g.cs
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -83,11 +82,6 @@ C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\Se
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\bin\Debug\netcoreapp3.1\Service.pdb
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.csproj.CoreCompileInputs.cache
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\ProjectVehicle.MvcApplicationPartsAssemblyInfo.cache
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\Model.cshtml.g.cs
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\CreateMake.cshtml.g.cs
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\CreateModel.cshtml.g.cs
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditMake.cshtml.g.cs
-C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Vehicle\EditModel.cshtml.g.cs
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\scopedcss\bundle\ProjectVehicle.styles.css
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Make\Create.cshtml.g.cs
 C:\ProjectFiles\ProjektniZadatak(Mono)\ProjectVehicle\obj\Debug\netcoreapp3.1\Razor\Views\Make\Edit.cshtml.g.cs

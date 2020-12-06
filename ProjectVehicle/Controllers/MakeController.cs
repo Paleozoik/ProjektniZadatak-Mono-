@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProjectVehicle.DTOs;
+using Service.Common.Paging;
 using Service.Interfaces;
 using Service.Models;
-using Service.Paging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectVehicle.Controllers
@@ -20,17 +21,13 @@ namespace ProjectVehicle.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(MakePaging pagingParams)
+        public async Task<IActionResult> Index(PagingParameters pagingParams, string? SortBy)
         {
-            ViewData["sortBy"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "MakeD" : "";
+            ViewData["sortByMake"] = String.IsNullOrEmpty(SortBy) ? "MakeD" : "";
+            ViewData["sortBy"] = SortBy;
 
-            var PagedMake = await _wrapper.MakeService.GetMakesAsync(pagingParams);
-            var PagedDTO = _mapper.Map<PagedList<MakeDTO>>(PagedMake);
-
-            PagedDTO.CurrentPage = PagedMake.CurrentPage;
-            PagedDTO.PageSize = PagedMake.PageSize;
-            PagedDTO.TotalCount = PagedMake.TotalCount;
-            PagedDTO.TotalPages = PagedMake.TotalPages;
+            var PagedMake = await _wrapper.MakeService.GetMakesAsync(pagingParams, SortBy);
+            var PagedDTO = new PagedList<MakeDTO> (_mapper.Map<List<MakeDTO>>(PagedMake), PagedMake.TotalCount, PagedMake.CurrentPage, PagedMake.PageSize);
 
             ViewBag.Data = PagedDTO;
             return View(pagingParams);

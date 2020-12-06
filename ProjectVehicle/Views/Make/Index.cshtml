@@ -1,4 +1,4 @@
-﻿@model Service.Paging.MakePaging
+﻿@model Service.Common.Paging.PagingParameters
 @{
     ViewData["Title"] = "Make";
 }
@@ -9,7 +9,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th><a asp-action="Index" asp-route-SortBy="@ViewData["sortBy"]">Name</a> </th>
+                <th><a asp-action="Index" asp-route-SortBy="@ViewData["sortByMake"]">Name</a> </th>
                 <th>Models</th>
                 <th></th>
             </tr>
@@ -40,11 +40,11 @@ else
     var nextDisabled = ViewBag.Data.HasNext ? "" : "disabled";
 }
 <a asp-action="Index"
-   asp-route-SortBy=@Model.SortBy
+   asp-route-SortBy=@ViewData["sortBy"]
    asp-route-PageNumber=@(Model.PageNumber-1)
    class="btn font-weight-bold @previousDisabled"><</a>
 @Model.PageNumber
 <a asp-action="Index"
-   asp-route-SortBy=@Model.SortBy
+   asp-route-SortBy=@ViewData["sortBy"]
    asp-route-PageNumber=@(Model.PageNumber+1)
    class="btn font-weight-bold @nextDisabled">></a>

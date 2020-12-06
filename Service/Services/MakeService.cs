@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Service.Abstracts;
+using Service.Common.Paging;
 using Service.Context;
 using Service.Interfaces;
 using Service.Models;
-using Service.Paging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +22,10 @@ namespace Service.Services
             return await FindByCondition(x => x.Id.Equals(Id)).FirstOrDefaultAsync();
         }
 
-        public async Task<PagedList<VehicleMake>> GetMakesAsync(MakePaging pagingParams)
+        public async Task<PagedList<VehicleMake>> GetMakesAsync(PagingParameters pagingParams, string SortBy)
         {
             var makes = FindAll().Include(x => x.Models);
-            IOrderedQueryable<VehicleMake> orderedMakes = pagingParams.SortBy switch
+            IOrderedQueryable<VehicleMake> orderedMakes = SortBy switch
             {
                 "MakeA" => makes.OrderBy(x => x.Name), //redundantno
                 "MakeD" => makes.OrderByDescending(x => x.Name),
