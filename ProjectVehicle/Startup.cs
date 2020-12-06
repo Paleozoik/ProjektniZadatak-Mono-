@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Service.Concretes;
 using Service.Context;
 using Service.Interfaces;
+using Service.Services;
 using System;
 
 namespace ProjectVehicle
@@ -44,8 +45,8 @@ namespace ProjectVehicle
         public void ConfigureContainer(ContainerBuilder builder)
         {
 
-            builder.RegisterType<MakeDataManipulations>().As<IMakeDataManipulations>();
-            builder.RegisterType<ModelDataManipulations>().As<IModelDataManipulations>();
+            builder.RegisterType<MakeService>().As<IMakeService>();
+            builder.RegisterType<ModelService>().As<IModelService>();
             builder.RegisterType<VehicleWrapper>().As<IVehicleWrapper>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

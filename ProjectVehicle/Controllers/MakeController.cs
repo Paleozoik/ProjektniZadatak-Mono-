@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Service.DTOs;
+using ProjectVehicle.DTOs;
 using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
@@ -24,7 +24,7 @@ namespace ProjectVehicle.Controllers
         {
             ViewData["sortBy"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "MakeD" : "";
 
-            var PagedMake = await _wrapper.Make.GetMakesAsync(pagingParams);
+            var PagedMake = await _wrapper.MakeService.GetMakesAsync(pagingParams);
             var PagedDTO = _mapper.Map<PagedList<MakeDTO>>(PagedMake);
 
             PagedDTO.CurrentPage = PagedMake.CurrentPage;
@@ -46,14 +46,14 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Make.CreateMakeAsync(_mapper.Map<VehicleMake>(make));
+                await _wrapper.MakeService.CreateMakeAsync(_mapper.Map<VehicleMake>(make));
                 return RedirectToAction("Index");
             }
             return View();
         }
         public async Task<IActionResult> Edit(int id)
         {
-            var make = await _wrapper.Make.GetMakeByIdAsync(id);
+            var make = await _wrapper.MakeService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 return BadRequest("Invalid ID");
@@ -66,7 +66,7 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Make.UpdateMakeAsync(_mapper.Map<VehicleMake>(make));
+                await _wrapper.MakeService.UpdateMakeAsync(_mapper.Map<VehicleMake>(make));
                 return RedirectToAction("Index");
             }
             return View(make.Id);
@@ -74,12 +74,12 @@ namespace ProjectVehicle.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            VehicleMake make = await _wrapper.Make.GetMakeByIdAsync(id);
+            VehicleMake make = await _wrapper.MakeService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 return BadRequest("Invalid ID");
             }
-            await _wrapper.Make.DeleteMakeAsync(make);
+            await _wrapper.MakeService.DeleteMakeAsync(make);
             return RedirectToAction("Index");
         }
     }

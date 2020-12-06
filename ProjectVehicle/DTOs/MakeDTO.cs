@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Service.DTOs
+namespace ProjectVehicle.DTOs
 {
     public class MakeDTO
     {

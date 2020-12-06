@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Service.DTOs;
+using ProjectVehicle.DTOs;
 using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
@@ -25,7 +25,7 @@ namespace ProjectVehicle.Controllers
         {
             ViewData["sortBy"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "MakeD" : "";
 
-            var PagedMake = await _wrapper.Make.GetMakesAsync(pagingParams);
+            var PagedMake = await _wrapper.MakeService.GetMakesAsync(pagingParams);
             var PagedDTO = _mapper.Map<PagedList<MakeDTO>>(PagedMake);
 
             PagedDTO.CurrentPage = PagedMake.CurrentPage; //Nisam siguran kako bih to napravio sa AutoMapper-om
@@ -42,7 +42,7 @@ namespace ProjectVehicle.Controllers
             ViewData["sortByModel"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "ModelD" : "";
             ViewData["sortByMake"] = pagingParams.SortBy == "MakeA" ? "MakeD" : "MakeA";
 
-            var PagedModel = await _wrapper.Model.GetModelsAsync(pagingParams);
+            var PagedModel = await _wrapper.ModelService.GetModelsAsync(pagingParams);
             var PagedDTO = _mapper.Map<PagedList<ModelDTO>>(PagedModel);
 
             PagedDTO.CurrentPage = PagedModel.CurrentPage; //Nisam siguran kako bih to napravio sa AutoMapper-om
@@ -55,7 +55,7 @@ namespace ProjectVehicle.Controllers
         }
         public async Task<IActionResult> CreateModel()
         {
-            var makes = await _wrapper.Make.GetAllMakesAsync();
+            var makes = await _wrapper.MakeService.GetAllMakesAsync();
 
             ViewBag.SelectList = makes.Select(x => new SelectListItem
             {
@@ -70,7 +70,7 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Model.CreateModelAsync(_mapper.Map<VehicleModel>(model));
+                await _wrapper.ModelService.CreateModelAsync(_mapper.Map<VehicleModel>(model));
                 return RedirectToAction("Model");
             }
             return View();
@@ -86,20 +86,20 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Make.CreateMakeAsync(_mapper.Map<VehicleMake>(make));
+                await _wrapper.MakeService.CreateMakeAsync(_mapper.Map<VehicleMake>(make));
                 return RedirectToAction("Make");
             }
             return View();
         }
         public async Task<IActionResult> EditModel(int id)
         {
-            var makes = await _wrapper.Make.GetAllMakesAsync();
+            var makes = await _wrapper.MakeService.GetAllMakesAsync();
             ViewBag.SelectList = makes.Select(x => new SelectListItem
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
             });
-            var model = await _wrapper.Model.GetModelByIdAsync(id);
+            var model = await _wrapper.ModelService.GetModelByIdAsync(id);
             if (model == null)
             {
                 return BadRequest("Invalid ID");
@@ -112,14 +112,14 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Model.UpdateModelAsync(_mapper.Map<VehicleModel>(model));
+                await _wrapper.ModelService.UpdateModelAsync(_mapper.Map<VehicleModel>(model));
                 return RedirectToAction("Model");
             }
             return View(model.Id);
         }
         public async Task<IActionResult> EditMake(int id)
         {
-            var make = await _wrapper.Make.GetMakeByIdAsync(id);
+            var make = await _wrapper.MakeService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 return BadRequest("Invalid ID");
@@ -132,29 +132,29 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Make.UpdateMakeAsync(_mapper.Map<VehicleMake>(make));
+                await _wrapper.MakeService.UpdateMakeAsync(_mapper.Map<VehicleMake>(make));
                 return RedirectToAction("Make");
             }
             return View(make.Id);
         }
         public async Task<IActionResult> DeleteModel(int id)
         {
-            VehicleModel model = await _wrapper.Model.GetModelByIdAsync(id);
+            VehicleModel model = await _wrapper.ModelService.GetModelByIdAsync(id);
             if (model == null)
             {
                 return BadRequest("Invalid ID");
             }
-            await _wrapper.Model.DeleteModelAsync(model);
+            await _wrapper.ModelService.DeleteModelAsync(model);
             return RedirectToAction("Model");
         }
         public async Task<IActionResult> DeleteMake(int id)
         {
-            VehicleMake make = await _wrapper.Make.GetMakeByIdAsync(id);
+            VehicleMake make = await _wrapper.MakeService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 return BadRequest("Invalid ID");
             }
-            await _wrapper.Make.DeleteMakeAsync(make);
+            await _wrapper.MakeService.DeleteMakeAsync(make);
             return RedirectToAction("Make");
         }
     }

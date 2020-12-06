@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Service.DTOs;
+using ProjectVehicle.DTOs;
 using Service.Interfaces;
 using Service.Models;
 using Service.Paging;
@@ -28,7 +28,7 @@ namespace ProjectVehicle.Controllers
             ViewData["sortByModel"] = String.IsNullOrEmpty(pagingParams.SortBy) ? "ModelD" : "";
             ViewData["sortByMake"] = pagingParams.SortBy == "MakeA" ? "MakeD" : "MakeA";
 
-            var PagedModel = await _wrapper.Model.GetModelsAsync(pagingParams);
+            var PagedModel = await _wrapper.ModelService.GetModelsAsync(pagingParams);
             var PagedDTO = _mapper.Map<PagedList<ModelDTO>>(PagedModel);
 
             PagedDTO.CurrentPage = PagedModel.CurrentPage;
@@ -41,7 +41,7 @@ namespace ProjectVehicle.Controllers
         }
         public async Task<IActionResult> Create()
         {
-            var makes = await _wrapper.Make.GetAllMakesAsync();
+            var makes = await _wrapper.MakeService.GetAllMakesAsync();
 
             ViewBag.SelectList = makes.Select(x => new SelectListItem
             {
@@ -56,20 +56,20 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Model.CreateModelAsync(_mapper.Map<VehicleModel>(model));
+                await _wrapper.ModelService.CreateModelAsync(_mapper.Map<VehicleModel>(model));
                 return RedirectToAction("Index");
             }
             return View();
         }
         public async Task<IActionResult> Edit(int id)
         {
-            var makes = await _wrapper.Make.GetAllMakesAsync();
+            var makes = await _wrapper.MakeService.GetAllMakesAsync();
             ViewBag.SelectList = makes.Select(x => new SelectListItem
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
             });
-            var model = await _wrapper.Model.GetModelByIdAsync(id);
+            var model = await _wrapper.ModelService.GetModelByIdAsync(id);
             if (model == null)
             {
                 return BadRequest("Invalid ID");
@@ -82,19 +82,19 @@ namespace ProjectVehicle.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _wrapper.Model.UpdateModelAsync(_mapper.Map<VehicleModel>(model));
+                await _wrapper.ModelService.UpdateModelAsync(_mapper.Map<VehicleModel>(model));
                 return RedirectToAction("Index");
             }
             return View(model.Id);
         }
         public async Task<IActionResult> Delete(int id)
         {
-            VehicleModel model = await _wrapper.Model.GetModelByIdAsync(id);
+            VehicleModel model = await _wrapper.ModelService.GetModelByIdAsync(id);
             if (model == null)
             {
                 return BadRequest("Invalid ID");
             }
-            await _wrapper.Model.DeleteModelAsync(model);
+            await _wrapper.ModelService.DeleteModelAsync(model);
             return RedirectToAction("Index");
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace Service.DTOs
+﻿namespace ProjectVehicle.DTOs
 {
     public class ModelDTO
     {
